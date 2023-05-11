@@ -7,22 +7,22 @@
 # 999 --> 4 (потому что 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, наконец 1*2 = 2, Итого 4 итерации)
 # 4 --> 0 (4 уже одна цифра, а значит мы проделали 0 итераций)
 
+def multiply(num):
+	mulitplication = 1
+	while num > 0:
+		mulitplication *= (num % 10)
+		num //= 10
+	return mulitplication
+
 def multiplication_chain(num):
     #  Взяты результаты таск3 и два позволенных цикла
-    count_multy = 0
-    if num > 9:
-        while True:
-            mulitplication = 1
-            while num > 0:
-                mulitplication *= (num % 10)
-                num //= 10
-            if mulitplication > 9:
-                count_multy += 1
-                num = mulitplication
-            else:
-                count_multy += 1
-                break
-    return count_multy
+	count_multy = 0
+	if num > 9:
+		while len(str(num)) >= 2:
+			mulitplication = multiply(num)
+			count_multy += 1
+			num = mulitplication
+	return count_multy
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 

@@ -7,7 +7,7 @@ def create_phone_number(num_tuple):
     list_as_string = ''
     for item in num_tuple:
         list_as_string += str(item)
-    str_phone = '(' + list_as_string[:3] + ') ' + list_as_string[3:6] + '-' + list_as_string[6:]
+    str_phone = f'({list_as_string[:3]}) {list_as_string[3:6]}-{list_as_string[6:]}'
     return str_phone
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
