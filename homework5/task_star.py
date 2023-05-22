@@ -9,30 +9,35 @@
 # Например (Ввод --> Вывод) :
 # 2008 --> MMVIII
 
+conversion_table = {
+        1000: 'M',
+        500: 'D',
+        100: 'C',
+        50: 'L',
+        10: 'X',
+        5: 'V',
+        1: 'I'
+}
+
+# для составления значений из случаев IV, VI и тд
+def recursive_helper(value, repeat):
+    if value in (4, 9):
+        return recursive_helper(1, repeat) + recursive_helper(value + 1, repeat)
+    elif value in (6, 7, 8):
+        return recursive_helper(value - 1, repeat) + recursive_helper(1, repeat)
+    elif value in (2, 3):
+        return recursive_helper(1, repeat) + recursive_helper(value - 1, repeat)
+    elif value == 0:
+        return ''
+    return conversion_table[value * repeat]
 
 def to_roman(val):
-    conversion_table = {
-        1000: 'M',
-        900: 'CM',
-        500: 'D',
-        400: 'CD',
-        100: 'C',
-        90: 'XC',
-        50: 'L',
-        40: 'XL',
-        10: 'X',
-        9: 'IX',
-        5: 'V',
-        4: 'IV',
-        1: 'I'
-    }
-    
     roman_str = ''
-    for key_integer in conversion_table:
-        remainder = val % key_integer
-        val = val // key_integer
-        roman_str += conversion_table[key_integer] * val
-        val = remainder
+    value_as_string = str(val)
+    repeat_times = 1 * pow(10, len(value_as_string) - 1)
+    for digit in value_as_string:
+        roman_str += recursive_helper(int(digit), repeat_times)
+        repeat_times //= 10
     return roman_str
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ

@@ -12,34 +12,23 @@
 # Например (Ввод --> Вывод):
 # курс --> 6 (к=2, у=2, р=1, с=1)
 
-#  Раз уж вебинар и про функции тоже
-def get_score(character):
-    value = 0
-    match character:
-        case 'а' | 'в' | 'е' | 'ё' | 'и' | 'н' | 'о' | 'р' | 'с' | 'т':
-            value = 1
-        case 'д' | 'к' | 'л' | 'м' | 'п' | 'у':
-            value = 2
-        case 'б' | 'г' | 'ь' | 'я':
-            value = 3
-        case 'й' | 'ы':
-            value = 4
-        case 'ж' | 'з' | 'х' | 'ц' | 'ч':
-            value = 5
-        case 'ф' | 'ш' | 'э' | 'ю':
-            value = 8
-        case 'щ':
-            value = 10
-        case 'ъ':
-            value = 15
-        case _:
-            value = 0
-    return value
-
 def scrabble(word):
+    points_dict = {
+        ('а', 'в', 'е', 'ё', 'и', 'н', 'о', 'р', 'с', 'т'): 1,
+        ('д', 'к', 'л', 'м', 'п', 'у'): 2,
+        ('б', 'г', 'ь', 'я'): 3,
+        ('й', 'ы'): 4,
+        ('ж', 'з', 'х', 'ц', 'ч'): 5,
+        ('ф', 'ш', 'э', 'ю'): 8,
+        ('щ',): 10,
+        ('ъ',): 15
+    }
+    
     points = 0
     for char in word:
-        points += get_score(char)
+        for key_tuple in points_dict:
+            if char in key_tuple:
+                points += points_dict[key_tuple]
     return points
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ

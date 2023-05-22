@@ -9,10 +9,9 @@
 def repeats(our_str):
     new_str = ''
     count_dict = {}
-    unique_letters = ''.join(set(our_str))
-    for char in unique_letters:
-        count_dict[char] = 0
     for char in our_str:
+        if char not in count_dict:
+            count_dict[char] = 0
         count_dict[char] += 1
         new_str += (char + '_' + str(count_dict[char]))
     return new_str
