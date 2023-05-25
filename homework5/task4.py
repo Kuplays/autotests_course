@@ -14,21 +14,21 @@
 
 def scrabble(word):
     points_dict = {
-        ('а', 'в', 'е', 'ё', 'и', 'н', 'о', 'р', 'с', 'т'): 1,
-        ('д', 'к', 'л', 'м', 'п', 'у'): 2,
-        ('б', 'г', 'ь', 'я'): 3,
-        ('й', 'ы'): 4,
-        ('ж', 'з', 'х', 'ц', 'ч'): 5,
-        ('ф', 'ш', 'э', 'ю'): 8,
-        ('щ',): 10,
-        ('ъ',): 15
+        'авеёинорст': 1,
+        'дклмпу': 2,
+        'бгья': 3,
+        'йы': 4,
+        'жзхцч': 5,
+        'фшэю': 8,
+        'щ': 10,
+        'ъ': 15
     }
     
     points = 0
     for char in word:
-        for key_tuple in points_dict:
-            if char in key_tuple:
-                points += points_dict[key_tuple]
+        for key in points_dict:
+            if char in key:
+                points += points_dict[key]
     return points
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
