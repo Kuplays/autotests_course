@@ -20,6 +20,10 @@ import unittest  # Не удалять
 
 class Trigon:
     def __init__(self, *args):
+        self.a, self.b, self.c = self._check_values(args)
+        self._check_triangle()
+
+    def _check_values(self, args):
         for item in args:
             if not isinstance(item, int):
                 raise TypeError('Стороны должны быть числами')
@@ -27,10 +31,11 @@ class Trigon:
                 raise ValueError('Стороны должны быть положительными')
         if not len(args) == 3:
             raise IndexError(f'Передано {len(args)} аргументов, а ожидается 3')
-        if not(args[0] + args[1] > args[2] or args[0] + args[2] > args[1] or args[1] + args[2] > args[0]):
+        return args[0], args[1], args[2]
+
+    def _check_triangle(self):
+        if not (self.a + self.b > self.c or self.a + self.c > self.b or self.b + self.c > self.a):
             raise Exception('Не треугольник')
-
-
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
 
